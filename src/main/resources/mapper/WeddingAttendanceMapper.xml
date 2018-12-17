@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="site.changcheng.wedding.dao.mapper.WeddingAttendanceMapper" >
+  <resultMap id="BaseResultMap" type="site.changcheng.wedding.dao.entity.WeddingAttendance" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="benediction" property="benediction" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="attend_status" property="attendStatus" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, mobile, username, benediction, type, create_time, attend_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_wedding_attendance
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_wedding_attendance
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="site.changcheng.wedding.dao.entity.WeddingAttendance" >
+    insert into t_wedding_attendance (id, mobile, username, 
+      benediction, type, create_time, 
+      attend_status)
+    values (#{id,jdbcType=BIGINT}, #{mobile,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+      #{benediction,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{attendStatus,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="site.changcheng.wedding.dao.entity.WeddingAttendance" >
+    insert into t_wedding_attendance
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="benediction != null" >
+        benediction,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="attendStatus != null" >
+        attend_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="benediction != null" >
+        #{benediction,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="attendStatus != null" >
+        #{attendStatus,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="site.changcheng.wedding.dao.entity.WeddingAttendance" >
+    update t_wedding_attendance
+    <set >
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="benediction != null" >
+        benediction = #{benediction,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="attendStatus != null" >
+        attend_status = #{attendStatus,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="site.changcheng.wedding.dao.entity.WeddingAttendance" >
+    update t_wedding_attendance
+    set mobile = #{mobile,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      benediction = #{benediction,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      attend_status = #{attendStatus,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

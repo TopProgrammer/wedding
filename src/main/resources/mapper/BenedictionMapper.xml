@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="site.changcheng.wedding.dao.mapper.BenedictionMapper" >
+  <resultMap id="BaseResultMap" type="site.changcheng.wedding.dao.entity.Benediction" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="friend_name" property="friendName" jdbcType="VARCHAR" />
+    <result column="benediction" property="benediction" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, friend_name, benediction, type, create_time, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_benediction
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_benediction
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="site.changcheng.wedding.dao.entity.Benediction" >
+    insert into t_benediction (id, friend_name, benediction, 
+      type, create_time, status
+      )
+    values (#{id,jdbcType=BIGINT}, #{friendName,jdbcType=VARCHAR}, #{benediction,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="site.changcheng.wedding.dao.entity.Benediction" >
+    insert into t_benediction
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="friendName != null" >
+        friend_name,
+      </if>
+      <if test="benediction != null" >
+        benediction,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="friendName != null" >
+        #{friendName,jdbcType=VARCHAR},
+      </if>
+      <if test="benediction != null" >
+        #{benediction,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="site.changcheng.wedding.dao.entity.Benediction" >
+    update t_benediction
+    <set >
+      <if test="friendName != null" >
+        friend_name = #{friendName,jdbcType=VARCHAR},
+      </if>
+      <if test="benediction != null" >
+        benediction = #{benediction,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="site.changcheng.wedding.dao.entity.Benediction" >
+    update t_benediction
+    set friend_name = #{friendName,jdbcType=VARCHAR},
+      benediction = #{benediction,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
