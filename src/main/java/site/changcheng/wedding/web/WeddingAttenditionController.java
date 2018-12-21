@@ -15,19 +15,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import site.changcheng.wedding.Service.WeddingAttendanceService;
 import site.changcheng.wedding.web.request.WeddingAttendanceReq;
 import site.changcheng.wedding.web.response.WeddingAttendanceVo;
 
 @RestController
 @RequestMapping(value = "/wedding")
-@Api(value = "用户出席婚礼接口")
+@Api(value="出席婚礼controller",tags={"出席婚礼相关接口"})
 @CrossOrigin
 public class WeddingAttenditionController {
 
     @Resource
     private WeddingAttendanceService weddingAttendanceService;
 
+    @ApiOperation(value = "根据id查询学生信息", notes = "查询数据库中某个的学生信息")
     @RequestMapping(value = "/attendance",method = RequestMethod.PUT)
     public ResponseEntity<WeddingAttendanceVo> addAttend(@RequestBody WeddingAttendanceReq req){
         WeddingAttendanceVo vo = weddingAttendanceService.addWeddingAttendance(req);

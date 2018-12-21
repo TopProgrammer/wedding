@@ -8,13 +8,13 @@ logging:
   config: classpath:logback.xml
 
 server:
-  port: 8443
+  port: 8000
   session-timeout: 1800
-  ssl:
-    key-store: wx.pfx
-    key-store-password: slM308vh
-    keyStoreType: PKCS12
-    keyAlias: tomcat
+#  ssl:
+#    key-store: wx.pfx
+#    key-store-password: slM308vh
+#    keyStoreType: PKCS12
+#    keyAlias: tomcat
 
 
 spring:
@@ -65,4 +65,4 @@ session:
       - "/api-docs/**"
       - "/v2/api-docs/**"
 
-debug: true
+debug: false
