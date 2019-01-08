@@ -36,7 +36,7 @@ public class PicController {
 
     @RequestMapping("/")
     public ResponseEntity<List<PicUrlVo>> getWeddingGalleryPic(){
-        int type = 1;
+        int type = 2;
 
         List<PicUrlVo> picUrlVoList = picUrlService.getPicUrlByType(type);
 

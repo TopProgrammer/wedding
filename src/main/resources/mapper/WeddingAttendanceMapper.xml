@@ -13,12 +13,40 @@
   <sql id="Base_Column_List" >
     id, mobile, username, benediction, type, create_time, attend_status
   </sql>
+  <sql id="where" >
+    <if test="mobile != null" >
+      mobile='',
+    </if>
+    <if test="username != null" >
+      username,
+    </if>
+    <if test="benediction != null" >
+      benediction,
+    </if>
+    <if test="type != null" >
+      type,
+    </if>
+    <if test="createTime != null" >
+      create_time,
+    </if>
+    <if test="attendStatus != null" >
+      attend_status,
+    </if>
+  </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
     from t_wedding_attendance
     where id = #{id,jdbcType=BIGINT}
   </select>
+
+  <select id="selectByWhere" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_wedding_attendance
+    <include refid="where" />
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from t_wedding_attendance
     where id = #{id,jdbcType=BIGINT}
